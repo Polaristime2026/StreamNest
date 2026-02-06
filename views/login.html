@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elm Academy · 登录</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+  <div id="app">
+    <main class="frame">
+      <section class="hero">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          下一代学习空间
+        </div>
+        <h1>欢迎回到 Elm Academy</h1>
+        <p class="lede">
+          以项目为驱动的课程、实时辅导与学习社区，让你在最短时间内掌握硬技能。
+          登录后继续未完的课程，或加入正在进行的现场课堂。
+        </p>
+        <div class="pill-list">
+          <span class="pill">个性化路径</span>
+          <span class="pill">直播助教</span>
+          <span class="pill">课程证书</span>
+          <span class="pill">团队看板</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <div>
+          <h2>登录你的课堂</h2>
+          <p>使用学校邮箱或单点登录。</p>
+        </div>
+
+        <form @submit.prevent="submitLogin">
+          <div>
+            <label for="email">学校邮箱</label>
+            <input
+              id="email"
+              v-model.trim="form.email"
+              name="email"
+              type="email"
+              placeholder="you@campus.edu"
+              required
+            >
+          </div>
+          <div>
+            <label for="password">密码</label>
+            <input
+              id="password"
+              v-model="form.password"
+              name="password"
+              type="password"
+              placeholder="********"
+              required
+            >
+          </div>
+
+          <div class="action action-between">
+            <a href="#">忘记密码？</a>
+            <button class="btn-primary" type="submit">进入课堂</button>
+          </div>
+        </form>
+
+        <div class="divider">或</div>
+        <button class="btn-ghost" type="button" @click="loginWithSSO">使用校园单点登录</button>
+        <p class="note">还没有账号？ <a class="note-link" href="#">创建学习者档案</a></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp, reactive } = Vue;
+
+    createApp({
+      setup() {
+        const form = reactive({
+          email: "",
+          password: ""
+        });
+
+        const submitLogin = () => {
+          console.log("登录参数:", { ...form });
+        };
+
+        const loginWithSSO = () => {
+          console.log("使用 SSO 登录");
+        };
+
+        return {
+          form,
+          submitLogin,
+          loginWithSSO
+        };
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>
