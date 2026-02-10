@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug edu_auth_server (WSL/Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/build/edu_auth_server",
+            "args": [],
+            "cwd": "${workspaceFolder}/backend/build",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "stopAtEntry": false,
+            "preLaunchTask": "CMake: Build"
+        },
+        {
+            "name": "Attach to edu_auth_server (remote/gdbserver)",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/backend/build/edu_auth_server",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

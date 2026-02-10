@@ -1,0 +1,21 @@
+:root {
+  --ink: #0b1021;
+  --teal: #15c0a0;
+  --amber: #f8c361;
+  --stroke: rgba(255, 255, 255, 0.08);
+  --shadow: 0 20px 60px rgba(11, 16, 33, 0.35);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
+  background: 
+    radial-gradient(140% 120% at 20% 25%, rgba(21, 192, 160, 0.25), transparent 45%),
+    radial-gradient(120% 120% at 85% 20%, rgba(248, 195, 97, 0.18), transparent 50%),
+    var(--ink);
+  color: #f5f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
