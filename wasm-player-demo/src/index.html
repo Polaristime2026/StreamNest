@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WASM Player Demo</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #0d1117;
+        --panel: #161b22;
+        --line: #2f3640;
+        --fg: #f0f6fc;
+        --accent: #4cc9f0;
+        --accent-2: #06d6a0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--fg);
+        font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+        background:
+          radial-gradient(1200px 800px at 10% -10%, #1f2a44, transparent),
+          radial-gradient(900px 600px at 90% 120%, #1e3b2c, transparent),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .player {
+        width: min(100%, 1024px);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--panel) 92%, #fff 8%);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+      }
+
+      #videoCanvas {
+        width: 100%;
+        display: block;
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+
+      .controls {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      button,
+      select,
+      input[type='range'] {
+        accent-color: var(--accent);
+      }
+
+      button {
+        border: 1px solid var(--line);
+        background: #1f2630;
+        color: var(--fg);
+        border-radius: 10px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        border-color: var(--accent-2);
+      }
+
+      #seekBar {
+        width: 100%;
+      }
+
+      .meta {
+        margin-left: auto;
+        opacity: 0.85;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="player">
+      <canvas id="videoCanvas" width="1280" height="720"></canvas>
+      <div class="controls">
+        <input id="seekBar" type="range" min="0" max="1000" step="1" value="0" />
+
+        <div class="row">
+          <button id="playBtn">播放</button>
+          <button id="pauseBtn">暂停</button>
+
+          <label>
+            音量
+            <input id="volumeBar" type="range" min="0" max="1" step="0.01" value="1" />
+          </label>
+
+          <label>
+            倍速
+            <select id="rateSel">
+              <option value="0.5">0.5x</option>
+              <option value="1" selected>1.0x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+              <option value="2">2.0x</option>
+            </select>
+          </label>
+
+          <div id="timeLabel" class="meta">00:00 / --:--</div>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>
